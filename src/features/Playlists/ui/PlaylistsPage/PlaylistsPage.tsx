@@ -1,7 +1,26 @@
-const PlaylistsPage = () => {
-  return (
-    <h1>PlaylistsPage</h1>
-  )
-}
+import { useFetchPlaylistsQuery } from '../../api/playlistApi';
 
-export default PlaylistsPage
+import s from './PlaylistsPage.module.css';
+
+const PlaylistsPage = () => {
+  const { data } = useFetchPlaylistsQuery();
+
+  return (
+    <div className={s.container}>
+      <h1>Playlists page</h1>
+      <div className={s.items}>
+        {data?.data.map((playlist) => {
+          return (
+            <div className={s.item} key={playlist.id}>
+              <div>title: {playlist.attributes.title}</div>
+              <div>description: {playlist.attributes.description}</div>
+              <div>userName: {playlist.attributes.user.name}</div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default PlaylistsPage;
