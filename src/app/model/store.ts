@@ -1,13 +1,13 @@
-import { playlistApi } from '@/features/Playlists/api/playlistApi';
+import { baseApi } from '../api/baseApi';
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
 export const store = configureStore({
   reducer: {
-    [playlistApi.reducerPath]: playlistApi.reducer,
+    [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(playlistApi.middleware),
+    getDefaultMiddleware().concat(baseApi.middleware),
 });
 
 setupListeners(store.dispatch);
