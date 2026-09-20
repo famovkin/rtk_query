@@ -13,11 +13,19 @@ const PlaylistsPage = () => {
   const [pageSize, setPageSize] = useState(2);
 
   const deboucedSearch = useDebounceValue(search);
-  const { data, isLoading } = useFetchPlaylistsQuery({
-    search: deboucedSearch,
-    pageNumber: currentPage,
-    pageSize,
-  });
+  const { data, isLoading } = useFetchPlaylistsQuery(
+    {
+      search: deboucedSearch,
+      pageNumber: currentPage,
+      pageSize,
+    },
+    // {
+    // refetchOnFocus: true,
+    // refetchOnReconnect: true,
+    // pollingInterval: 3000,
+    // skipPollingIfUnfocused: true,
+    // }
+  );
 
   const changePageSizeHandler = (size: number) => {
     setPageSize(size);
@@ -41,7 +49,10 @@ const PlaylistsPage = () => {
         type="search"
         placeholder={'Search playlist by title'}
       />
-      <PlaylistList playlists={data?.data || []} isPlaylistLoading={isLoading} />
+      <PlaylistList
+        playlists={data?.data || []}
+        isPlaylistLoading={isLoading}
+      />
       <Pagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}

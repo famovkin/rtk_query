@@ -1,7 +1,14 @@
-const MainPage = () => {
-  return (
-    <h1>MainPage</h1>
-  )
-}
+import { useGetMeQuery } from '@/features/auth/api/authApi';
 
-export default MainPage
+const MainPage = () => {
+  const { data } = useGetMeQuery();
+
+  return (
+    <div>
+      <h1>Main page</h1>
+      <div>login: {data?.login} </div>
+    </div>
+  );
+};
+
+export default MainPage;

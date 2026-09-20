@@ -1,7 +1,9 @@
-const ProfilePage = () => {
-  return (
-    <h1>ProfilePage</h1>
-  )
-}
+import { useGetMeQuery } from '../../api/authApi';
 
-export default ProfilePage
+const ProfilePage = () => {
+  const { data } = useGetMeQuery();
+
+  return <h1>{data?.login} page</h1>;
+};
+
+export default ProfilePage;
