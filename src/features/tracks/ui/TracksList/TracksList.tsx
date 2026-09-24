@@ -1,0 +1,34 @@
+import type { FC } from 'react';
+import type { TrackData } from '../../api/tracksApi.types';
+
+import s from './TracksList.module.css';
+
+type TracksListProps = {
+  tracks: TrackData[];
+};
+
+const TracksList: FC<TracksListProps> = ({ tracks }) => {
+  return (
+    <div className={s.list}>
+      {tracks.map((track) => {
+        const { title, user, attachments } = track.attributes;
+
+        return (
+          <div key={track.id} className={s.item}>
+            <div>
+              <p>Title: {title}</p>
+              <p>Name: {user.name}</p>
+            </div>
+            {attachments.length ? (
+              <audio controls src={attachments[0].url} />
+            ) : (
+              'no file'
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default TracksList;
