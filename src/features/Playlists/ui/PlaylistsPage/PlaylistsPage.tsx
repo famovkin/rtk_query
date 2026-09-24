@@ -39,6 +39,8 @@ const PlaylistsPage = () => {
     setSearch(e.target.value);
   };
 
+  if (isLoading) return <p>Skeleton loader</p>;
+
   return (
     <div className={s.container}>
       <h1>Playlists page</h1>
