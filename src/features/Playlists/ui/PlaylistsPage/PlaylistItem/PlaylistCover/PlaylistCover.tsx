@@ -6,9 +6,9 @@ import {
   useUploadPlaylistCoverMutation,
 } from '@/features/Playlists/api/playlistApi';
 import type { Images } from '@/common/types';
+import { errorToast } from '@/common/utils';
 
 import s from './PlaylistCover.module.css';
-import { toast } from 'react-toastify';
 
 const allowedCoverTypes = ['image/jpeg', 'image/png', 'image/gif'];
 const maxCoverSize = 1024 * 1024;
@@ -33,20 +33,13 @@ const PlaylistCover: FC<PlaylistCoverType> = ({ playlistId, images }) => {
     if (!file) return;
 
     if (!allowedCoverTypes.includes(file.type)) {
-      toast('Only JPEG, PNG or GIF images are allowed', {
-        type: 'error',
-        theme: 'colored',
-      });
+      errorToast('Only JPEG, PNG or GIF images are allowed');
       return;
     }
 
     if (file.size > maxCoverSize) {
-      toast(
+      errorToast(
         `The file is too large (max. ${Math.round(maxCoverSize / 1024)} KB)`,
-        {
-          type: 'error',
-          theme: 'colored',
-        },
       );
       return;
     }
