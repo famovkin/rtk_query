@@ -37,9 +37,8 @@ const EditPlaylistForm: FC<EditPlaylistFormProps> = ({
           },
         },
       },
-    })
-      .unwrap()
-      .then(() => setEditedPlaylistId(null));
+    });
+    setEditedPlaylistId(null);
   };
 
   return (
