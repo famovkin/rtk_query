@@ -2,7 +2,6 @@ import { Pagination } from '@/common/components';
 import { useDebounceValue } from '@/common/hooks';
 import { useState, type ChangeEvent } from 'react';
 import { useFetchPlaylistsQuery } from '../../api/playlistApi';
-import { CreatePlaylistForm } from './CreatePlaylistForm/CreatePlaylistForm';
 import PlaylistList from './PlaylistList/PlaylistList';
 
 import s from './PlaylistsPage.module.css';
@@ -44,7 +43,6 @@ const PlaylistsPage = () => {
   return (
     <div className={s.container}>
       <h1>Playlists page</h1>
-      <CreatePlaylistForm />
       <input
         value={search}
         onChange={(e) => searchPlaylistHandler(e)}
