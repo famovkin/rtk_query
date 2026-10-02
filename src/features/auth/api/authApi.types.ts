@@ -1,12 +1,19 @@
-export type MeResponse = {
-  userId: string;
-  login: string;
-};
+import z from 'zod';
 
-export type LoginResponse = {
-  refreshToken: string;
-  accessToken: string;
-};
+import type {
+  meResponseSchema,
+  loginResponseSchema,
+} from '../model/auth.schemas';
+
+// export type MeResponse = {
+//   userId: string;
+//   login: string;
+// };
+
+// export type LoginResponse = {
+//   refreshToken: string;
+//   accessToken: string;
+// };
 
 export type LoginArgs = {
   code: string;
@@ -14,3 +21,6 @@ export type LoginArgs = {
   rememberMe: boolean;
   accessTokenTTL?: string;
 };
+
+export type MeResponse = z.infer<typeof meResponseSchema>;
+export type LoginResponse = z.infer<typeof loginResponseSchema>;
