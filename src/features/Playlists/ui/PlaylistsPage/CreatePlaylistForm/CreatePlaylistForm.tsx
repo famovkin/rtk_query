@@ -3,7 +3,7 @@ import type { CreatePlaylistArgs } from '@/features/Playlists/api/playlistsApi.t
 import { useForm, type SubmitHandler } from 'react-hook-form';
 
 export const CreatePlaylistForm = () => {
-  const { register, handleSubmit, reset } = useForm<CreatePlaylistArgs>();
+  const { register, handleSubmit, setValue } = useForm<CreatePlaylistArgs>();
 
   const [createPlaylist] = useCreatePlaylistMutation();
 
@@ -17,7 +17,10 @@ export const CreatePlaylistForm = () => {
       },
     })
       .unwrap()
-      .then(() => reset());
+      .then(() => {
+        setValue('title', '');
+        setValue('description', '');
+      });
   };
 
   return (
